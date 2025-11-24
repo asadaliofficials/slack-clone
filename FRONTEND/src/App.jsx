@@ -1,7 +1,17 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import React from 'react';
 
 const App = () => {
-	return <div className="text-5xl text-red-500 font-extrabold">App</div>;
+	return (
+		<header>
+			<SignedOut>
+				<SignInButton mode="modal" />
+			</SignedOut>
+			<SignedIn>
+				<UserButton />
+			</SignedIn>
+		</header>
+	);
 };
 
 export default App;
