@@ -25,9 +25,9 @@ app.get('/health', (req, res) => {
 	});
 });
 
-const startServer = () => {
+const startServer = async () => {
 	try {
-		connectDB();
+		await connectDB();
 		if (NODE_ENV === 'development') {
 			app.listen(PORT, () => {
 				console.log('Server listening on port', PORT);
