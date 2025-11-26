@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
-		"dev": "nodemon ./src/server.js",
-		"start": "node ./src/server.js"
+		"dev": "nodemon --import ./instrument.mjs ./src/server.js",
+		"start": "node --import ./instrument.mjs ./src/server.js"
 	},
 	"keywords": [],
 	"author": "",
@@ -13,6 +13,7 @@
 	"type": "module",
 	"dependencies": {
 		"@clerk/express": "^1.7.52",
+		"@sentry/node": "^10.27.0",
 		"bcrypt": "^6.0.0",
 		"cookie-parser": "^1.4.7",
 		"dotenv": "^17.2.3",
@@ -22,6 +23,7 @@
 		"mongoose": "^9.0.0"
 	},
 	"devDependencies": {
+		"cross-env": "^10.1.0",
 		"nodemon": "^3.1.11"
 	}
 }
