@@ -13,6 +13,7 @@
 	"type": "module",
 	"dependencies": {
 		"@clerk/express": "^1.7.52",
+		"@sentry/node": "^10.27.0",
 		"bcrypt": "^6.0.0",
 		"cookie-parser": "^1.4.7",
 		"dotenv": "^17.2.3",
