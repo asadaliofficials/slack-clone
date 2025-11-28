@@ -10,10 +10,10 @@ import * as Sentry from '@sentry/node';
 
 const app = express();
 
-app.use('/api/inngest', serve({ client: inngest, functions }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(clerkMiddleware());
+app.use('/api/inngest', serve({ client: inngest, functions }));
 
 app.get('/', (req, res) => {
 	res.send('API is running...');
