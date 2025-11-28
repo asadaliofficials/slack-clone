@@ -10,6 +10,7 @@ import * as Sentry from '@sentry/node';
 
 const app = express();
 
+app.use('/api/inngest', serve({ client: inngest, functions }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(clerkMiddleware());
@@ -30,7 +31,7 @@ app.get('/api/error', (req, res) => {
 	throw new Error('Test error');
 });
 
-app.use('/api/inngest', serve({ client: inngest, functions }));
+// app.use('/api/inngest', serve({ client: inngest, functions }));
 app.use('/api/chat', chatRoutes);
 
 Sentry.setupExpressErrorHandler(app);
