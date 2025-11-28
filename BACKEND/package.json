@@ -20,7 +20,8 @@
 		"express": "^5.1.0",
 		"inngest": "^3.46.0",
 		"jsonwebtoken": "^9.0.2",
-		"mongoose": "^9.0.0"
+		"mongoose": "^9.0.0",
+		"stream-chat": "^9.26.0"
 	},
 	"devDependencies": {
 		"cross-env": "^10.1.0",

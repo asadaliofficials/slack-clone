@@ -15,6 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(clerkMiddleware());
 
+app.get('/', (req, res) => {
+	res.send('API is running...');
+});
 app.get('/api', (req, res) => {
 	res.send('Hello World!');
 });
@@ -31,7 +34,6 @@ app.get('/api/error', (req, res) => {
 	throw new Error('Test error');
 });
 
-// app.use('/api/inngest', serve({ client: inngest, functions }));
 app.use('/api/chat', chatRoutes);
 
 Sentry.setupExpressErrorHandler(app);
@@ -46,7 +48,7 @@ const startServer = async () => {
 		}
 	} catch (error) {
 		console.log(error);
-		process.exit(1);
+		// process.exit(1); // Don't exit in serverless environment
 	}
 };
 
