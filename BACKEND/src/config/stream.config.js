@@ -10,7 +10,6 @@ export const upsertStreamUser = async userData => {
 		return userData;
 	} catch (error) {
 		console.log('Error upserting Stream user:', error);
-		
 	}
 };
 
@@ -29,5 +28,17 @@ export const generateStreamToken = async userId => {
 	} catch (error) {
 		console.log('Failed to get stream token');
 		return null;
+	}
+};
+
+export const addUserToPublicChannels = async userId => {
+	try {
+		const publicChannels = await streamClient.queryChannels({ discoverable: true });
+
+		for (const channel of publicChannels) {
+			await channel.addMembers([userId]);
+		}
+	} catch (error) {
+		console.error('Error adding user to public channels:', error);
 	}
 };
