@@ -3,19 +3,21 @@ import React from 'react';
 import { Route, Routes } from 'react-router';
 import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
+import * as Sentry from '@sentry/react';
+const SentryRoutes = Sentry.withSentryReactRouterV7Routing(Routes);
 
 const App = () => {
 	return (
 		<header>
 			<SignedIn>
-				<Routes>
+				<SentryRoutes>
 					<Route path="/" element={<HomePage />} />
-				</Routes>
+				</SentryRoutes>
 			</SignedIn>
 			<SignedOut>
-				<Routes>
+				<SentryRoutes>
 					<Route path="*" element={<AuthPage />} />
-				</Routes>
+				</SentryRoutes>
 			</SignedOut>
 		</header>
 	);
