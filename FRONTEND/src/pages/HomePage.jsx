@@ -54,7 +54,7 @@ const HomePage = () => {
 							<div className="team-channel-list__header gap-4">
 								<div className="brand-container">
 									<img src="/logo.png" alt="Logo" className="brand-logo" />
-									<span className="brand-name">Slap</span>
+									<span className="brand-name">SlacK</span>
 								</div>
 								<div className="user-button-wrapper">
 									<UserButton />
@@ -111,7 +111,14 @@ const HomePage = () => {
 
 					{/* RIGHT CONTAINER */}
 					<div className="chat-main">
-						<Channel channel={activeChannel}>
+						<Channel
+							channel={activeChannel}
+							doSendMessageRequest={async (channelId, message) => {
+								// Remove the pending flag which causes the error
+								const { pending, ...messageWithoutPending } = message;
+								return activeChannel.sendMessage(messageWithoutPending);
+							}}
+						>
 							<Window>
 								<CustomChannelHeader />
 								<MessageList />
