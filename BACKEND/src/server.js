@@ -4,14 +4,16 @@ import { clerkMiddleware } from '@clerk/express';
 import { serve } from 'inngest/express';
 import { functions, inngest } from './config/inngest.config.js';
 import connectDB from './config/db.config.js';
-import { NODE_ENV, PORT } from './config/env.config.js';
+import { CLIENT_URL, NODE_ENV, PORT } from './config/env.config.js';
 import chatRoutes from './routes/chat.route.js';
 import * as Sentry from '@sentry/node';
+import cors from 'cors';
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors({ origin: CLIENT_URL, credentials: true }));
 app.use(clerkMiddleware());
 app.use('/api/inngest', serve({ client: inngest, functions }));
 

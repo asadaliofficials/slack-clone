@@ -13,4 +13,5 @@ export const {
 	SENTRY_DSN,
 	INNGEST_EVENT_KEY,
 	INNGEST_SIGNING_KEY,
+	CLIENT_URL,
 } = process.env;

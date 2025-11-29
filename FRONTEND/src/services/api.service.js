@@ -1,6 +1,13 @@
 import { axiosInstance } from '../lib/axios';
 
 export const getStreamToken = async () => {
-	const response = await axiosInstance.get('/chat/token');
-	return response.data;
+	try {
+		const response = await axiosInstance.get('/chat/token');
+		console.log(response);
+
+		return response.data;
+	} catch (error) {
+		console.error('Error fetching Stream token:', error);
+		throw error;
+	}
 };
