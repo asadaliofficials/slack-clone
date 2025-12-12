@@ -72,6 +72,16 @@ const HomePage = () => {
 								{/* CHANNEL LIST */}
 								<ChannelList
 									filters={{ members: { $in: [chatClient?.user?.id] } }}
+									channelRenderFilterFn={channels => {
+										return channels.filter(channel => {
+											// Check channel ID (matching CustomChannelPreview's access pattern)
+											const channelId = channel?.data?.id || channel?.id || '';
+											// Check channel name
+											const channelName = channel?.data?.name || '';
+											// Filter out channels where ID or name starts with 'user_'
+											return !channelId.startsWith('user_') && !channelName.startsWith('user_');
+										});
+									}}
 									options={{ state: true, watch: true }}
 									Preview={({ channel }) => (
 										<CustomChannelPreview
