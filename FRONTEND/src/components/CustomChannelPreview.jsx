@@ -2,7 +2,10 @@ import { HashIcon } from 'lucide-react';
 
 const CustomChannelPreview = ({ channel, setActiveChannel, activeChannel }) => {
 	const isActive = activeChannel && activeChannel.id === channel.id;
-	const isDM = channel.data.member_count === 2 && channel.data.id.includes('user_');
+	const channelId = channel?.data?.id || channel?.id || '';
+	const channelName = channel?.data?.name || '';
+	// Filter out channels where ID or name starts with 'user_'
+	const isDM = channelId.startsWith('user_') || channelId.startsWith('ai_tools');
 
 	if (isDM) return null;
 
